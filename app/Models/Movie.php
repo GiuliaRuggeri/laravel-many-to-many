@@ -15,11 +15,17 @@ class Movie extends Model
         "date",
         "duration",
         "poster_image",
+        "type_id"
 
     ];
 
     public function type()
     {
         return $this->belongsTo(Type::class);
+    }
+
+    public function technologies()
+    {
+        return $this->belongsToMany(Technology::class);
     }
 }

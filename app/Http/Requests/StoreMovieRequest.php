@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules\Exists;
 
 class StoreMovieRequest extends FormRequest
 {
@@ -27,6 +28,7 @@ class StoreMovieRequest extends FormRequest
             "date" => "required",
             "duration" => "required",
             "poster_image" => "required",
+            "type_id" => ["nullable", "exists:types,id"]
             
         ];
     }

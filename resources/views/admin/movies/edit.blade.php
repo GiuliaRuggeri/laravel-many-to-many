@@ -59,6 +59,29 @@
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
+                     {{-- Selezione tipo --}}
+                     <div class="mb-3">
+                        <label for="type" class="form-label">Type</label>
+                        <select name="type_id" id="type_id" class="form-select">
+                            <option value="">No type</option>
+                            @foreach ($types as $type)
+                                <option value="{{ $type->id }}">{{ $type->name }}</option>
+                            @endforeach
+                        </select>
+                        @error('type')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    {{-- Selezione tecnologia --}}
+                    <div class="mb-3">
+                        <label for="technologies" class="form-label">Technology</label>
+                        <select multiple name="technologies[]" id="technologies" class="form-select">
+                            <option value="">No technology</option>
+                            @foreach ($technologies as $technology)
+                                <option value="{{ $technology->id }}">{{ $technology->name }}</option>
+                            @endforeach 
+                        </select>
+                    </div>
 
 
 

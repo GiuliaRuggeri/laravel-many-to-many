@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller; 
 use App\Models\Movie;
+use App\Models\Type;
+use App\Models\Technology;
 use App\Http\Requests\StoreMovieRequest;
 use App\Http\Requests\UpdateMovieRequest;
 
@@ -15,8 +17,10 @@ class MovieController extends Controller
     public function index()
     {
         $movies = Movie::all();
+        $types = Type::all();
+        $technologies = Technology::all();
         
-        return view("admin.movies.index", compact("movies"));
+        return view("admin.movies.index", compact("movies", "types", "technologies" ));
     }
 
     /**
@@ -24,7 +28,10 @@ class MovieController extends Controller
      */
     public function create()
     {
-        return view("admin.movies.create");
+        $types = Type::all();
+        $technologies = Technology::all();
+
+        return view("admin.movies.create", compact("types", "technologies"));
     }
 
     /**
@@ -37,6 +44,11 @@ class MovieController extends Controller
         $newMovie = new Movie();
         $newMovie->fill($validated_data);
         $newMovie->save();
+
+        if ($request->technologies) {
+            $newMovie->technologies()->attach($request->technologies);
+        }
+
 
        return redirect()->route("admin.movies.index");
 
@@ -57,8 +69,12 @@ class MovieController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit(Movie $movie)
+
     {
-        return view("admin.movies.edit", compact("movie"));
+        $types = Type::all();
+        $technologies = Technology::all();
+
+        return view("admin.movies.edit", compact("movie", "types", "technologies"));
     }
 
     /**

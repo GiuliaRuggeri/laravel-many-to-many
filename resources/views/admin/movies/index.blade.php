@@ -13,6 +13,15 @@
                         <div class="card-body d-flex flex-column align-items-center">
                             <img class="img-fluid w-50" src="{{ $movie->poster_image }}" alt="">
                             <p class="mt-2">{{ $movie->description }}</p>
+                            @if (count($movie->technologies) > 0)
+                            <ul>
+                                @foreach ($movie->technologies as $technology)
+                                    <li>{{ $technology->name }}</li>
+                                @endforeach
+                            </ul>
+                        @else
+                            <p>No technologies</p>
+                        @endif
                             <p>{{ $movie->date }}</p>
                             <p> {{ $movie->duration }}</p>
                             <div class="d-flex justify-content-center">
