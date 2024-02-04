@@ -73,12 +73,18 @@
                         @enderror
                     </div>
                     {{-- Selezione tecnologia --}}
+                    
                     <div class="mb-3">
                         <label for="technologies" class="form-label">Technology</label>
                         <select multiple name="technologies[]" id="technologies" class="form-select">
                             <option value="">No technology</option>
                             @foreach ($technologies as $technology)
-                                <option value="{{ $technology->id }}">{{ $technology->name }}</option>
+                    
+                                <option value="{{ $technology->id }}" 
+                                    @selected(in_array($technology->id, $movie->technologies->pluck('id')->toArray()))
+                                    
+                                    
+                                    >{{ $technology->name }}</option>
                             @endforeach 
                         </select>
                     </div>

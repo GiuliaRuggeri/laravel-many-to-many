@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\MovieController;
+use App\Http\Controllers\Admin\TechnologyController;
 use App\Http\Controllers\Admin\TypeController;
 
 /*
@@ -31,6 +32,7 @@ Route::middleware(['auth'])
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('movies', MovieController::class);
     Route::resource('types', TypeController::class);
+    Route::resource('technologies', TechnologyController::class);
     
 
 

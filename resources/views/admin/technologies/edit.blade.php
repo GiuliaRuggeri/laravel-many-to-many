@@ -5,7 +5,7 @@
  <div class="">
     <div class="container">
         <div class="row">
-            <h2 class="">Edit type</h2>
+            <h2 class="">Edit technology</h2>
             @if ($errors->any())
                 <div class="alert alert-danger">
                     <ul>
@@ -17,21 +17,14 @@
             @endif
         </div>
         <div class="row">
-            <form action="{{ route('admin.types.update', $type->id) }}" method="POST" class="">
+            <form action="{{ route('admin.technologies.update', $technology->id) }}" method="POST" class="">
                 @csrf
                 @method('PUT')
                 <div class="mb-3">
                     <label for="name" class="form-label">Name</label>
                     <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"
-                        name="name" value="{{ old('name') ?? $type->name }}">
+                        name="name" value="{{ old('name') ?? $technology->name }}">
                     @error('name')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                </div>
-                <div class="mb-3">
-                    <label for="description" class="form-label">Description</label>
-                    <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description">{{ old('description') ?? $type->description }}</textarea>
-                    @error('description')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
